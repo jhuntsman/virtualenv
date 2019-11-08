@@ -68,6 +68,7 @@ PY_VERSION = "python{}.{}".format(*sys.version_info)
 
 IS_PYPY = hasattr(sys, "pypy_version_info")
 IS_WIN = sys.platform == "win32"
+IS_CLI = sys.platform == "cli"
 IS_CYGWIN = sys.platform == "cygwin"
 IS_DARWIN = sys.platform == "darwin"
 ABI_FLAGS = getattr(sys, "abiflags", "")
@@ -81,6 +82,8 @@ DEFAULT_CONFIG_FILE = os.path.join(DEFAULT_STORAGE_DIR, "virtualenv.ini")
 
 if IS_PYPY:
     EXPECTED_EXE = "pypy"
+else if IS_CLI:
+    EXPECTED_EXE = "ipy"    
 else:
     EXPECTED_EXE = "python"
 
